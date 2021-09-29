@@ -7,6 +7,7 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from '../slices/navSlice';
 
+
 //home screen if you couldnt tell by the file name
 const HomeScreen = () => {
 
@@ -41,14 +42,21 @@ const HomeScreen = () => {
                             fontSize: 18,
                         },
                     }}
-                    onPress={(date, details = null) => {
-                        dispatch(setOrigin({
+                    onPress={(data, details = null) => {
+
+                        
+                        dispatch(
+                            setOrigin({
                             location: details.geometry.location,
                             description: data.description
+                            })
 
-                        }))
+                        );
+
                         dispatch(setDestination(null))
                     }}
+                    fetchDetails={true}
+                    returnKeyType={"search"}
                     enablePoweredByContainer={false}
                     minLength={2}
                     query={{
