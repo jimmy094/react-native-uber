@@ -4,6 +4,8 @@ import tw from 'tailwind-react-native-classnames';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { useNavigation } from '@react-navigation/core';
+import { selectOrigin } from '../slices/navSlice';
+import { useSelector } from 'react-redux';
 
 const data = [
     {
@@ -31,16 +33,21 @@ const data = [
 const NavOptions = () => {
 
   const navigation = useNavigation();
+  const origin = useSelector(selectOrigin)
 
     return (
+      //decoration for nav options
        <FlatList 
           data={data}
           horizontal
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
               // can apply bg-gray-200 
-              <TouchableOpacity onPress={() => navigation.navigate(item.screen)} style={tw`p-2 pl-6 pb-8 pt-4 m-2 w-40`}>
-                <View>
+              <TouchableOpacity onPress={() => navigation.navigate(item.screen)} s
+              tyle={tw`p-2 pl-6 pb-8 pt-4 m-2 w-40`} 
+              disabled={!origin}>
+                
+                <View style={tw`${!origin && "opacity-20"}`}>
                   <Image
                     style={{width: 120, height: 120, resizeMode: "contain" }}
                     source={{ uri: item.image }}
