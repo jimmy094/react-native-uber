@@ -13,7 +13,7 @@ const MapScreen = () => {
     // stack navigator implemented to create a stack of screens 
     return (
         <View>
-            <Text>MAp Stuff</Text>
+            <Text></Text>
             {/* styling is to keep map at top half of page. INsert map component */}
             <View style={tw`h-1/2`}>
                 <Map />
